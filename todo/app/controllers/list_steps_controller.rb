@@ -1,4 +1,5 @@
 class ListStepsController < ApplicationController
+  before_action :set_list
   before_action :set_list_step, only: [:show, :edit, :update, :destroy]
 
   # GET /list_steps
@@ -14,7 +15,7 @@ class ListStepsController < ApplicationController
 
   # GET /list_steps/new
   def new
-    @list_step = ListStep.new
+    @list_step = @list.list_steps.new
   end
 
   # GET /list_steps/1/edit
@@ -24,11 +25,11 @@ class ListStepsController < ApplicationController
   # POST /list_steps
   # POST /list_steps.json
   def create
-    @list_step = ListStep.new(list_step_params)
+    @list_step = @list.list_steps.new(list_step_params)
 
     respond_to do |format|
       if @list_step.save
-        format.html { redirect_to @list_step, notice: 'List step was successfully created.' }
+        format.html { redirect_to @list, notice: 'List step was successfully created.' }
         format.json { render :show, status: :created, location: @list_step }
       else
         format.html { render :new }
@@ -65,6 +66,10 @@ class ListStepsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_list_step
       @list_step = ListStep.find(params[:id])
+    end
+
+    def set_list
+      @list = List.find(params[:list_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
