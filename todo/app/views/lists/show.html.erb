@@ -22,7 +22,7 @@
         <td><%= list_step.description %></td>
 
         <td><%= link_to 'Edit', (edit_list_list_step_path list_step.list_id, list_step) %></td>
-        <td><%= link_to 'Destroy', (edit_list_list_step_path list_step.list_id, list_step) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', (list_list_step_path list_step.list_id, list_step) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

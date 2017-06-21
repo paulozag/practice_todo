@@ -20,6 +20,7 @@ class ListStepsController < ApplicationController
 
   # GET /list_steps/1/edit
   def edit
+
   end
 
   # POST /list_steps
@@ -43,7 +44,7 @@ class ListStepsController < ApplicationController
   def update
     respond_to do |format|
       if @list_step.update(list_step_params)
-        format.html { redirect_to @list_step, notice: 'List step was successfully updated.' }
+        format.html { redirect_to @list, notice: 'List step was successfully updated.' }
         format.json { render :show, status: :ok, location: @list_step }
       else
         format.html { render :edit }
@@ -57,7 +58,7 @@ class ListStepsController < ApplicationController
   def destroy
     @list_step.destroy
     respond_to do |format|
-      format.html { redirect_to list_steps_url, notice: 'List step was successfully destroyed.' }
+      format.html { redirect_to @list, notice: 'List step was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
